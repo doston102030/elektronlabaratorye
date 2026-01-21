@@ -8,9 +8,8 @@ import {
   ChevronDown,
   Menu,
   X,
-  GraduationCap,
-  ArrowRight,
   User,
+  GraduationCap,
   BookOpen,
   Users,
   Briefcase,
@@ -18,14 +17,16 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
+// 1. Tillar ro'yxati
 const languages = {
-  uz: { code: 'uz', name: "O'zbek", flag: '🇺🇿' },
-  ru: { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  en: { code: 'en', name: 'English', flag: '🇺🇸' },
+  uz: { code: 'uz', name: "O'zbek", flag: '🇺🇿', label: 'UZ' },
+  ru: { code: 'ru', name: 'Русский', flag: '🇷🇺', label: 'RU' },
+  en: { code: 'en', name: 'English', flag: '🇺🇸', label: 'EN' },
 } as const
 
 type LanguageCode = keyof typeof languages
 
+// 2. Rasmdagi barcha ma'lumotlar kiritilgan kontent
 const navContent = {
   uz: {
     navItems: [
@@ -33,69 +34,29 @@ const navContent = {
       {
         label: 'Biz haqimizda',
         dropdown: [
-          {
-            label: 'Kompaniya haqida',
-            href: '/about/company',
-            desc: 'Bizning tariximiz va maqsadlarimiz',
-            icon: Briefcase,
-          },
-          {
-            label: 'Universitet haqida',
-            href: '/about/university',
-            desc: 'Akademik muhit va imkoniyatlar',
-            icon: GraduationCap,
-          },
-          {
-            label: 'Qabul',
-            href: '/about/admissions',
-            desc: 'Hujjat topshirish va talablar',
-            icon: Users,
-          },
-          {
-            label: 'Hujjatlar',
-            href: '/about/documents',
-            desc: 'Litsenziya va sertifikatlar',
-            icon: FileText,
-          },
+          { label: 'Kompaniya', href: '/about/company', desc: 'Tarix va maqsadlar', icon: Briefcase },
+          { label: 'Universitet', href: '/about/university', desc: 'Akademik muhit', icon: GraduationCap },
+          { label: 'Qabul', href: '/about/admissions', desc: 'Talablar', icon: Users },
+          { label: 'Hujjatlar', href: '/about/documents', desc: 'Litsenziyalar', icon: FileText },
         ],
       },
       {
         label: 'Faoliyat',
         dropdown: [
-          {
-            label: 'Loyihalar',
-            href: '/activities/projects',
-            desc: 'Innovatsion ishlanmalarimiz',
-            icon: Briefcase,
-          },
-          {
-            label: 'Ilmiy ishlar',
-            href: '/activities/scientific-works',
-            desc: 'Tadqiqotlar va kashfiyotlar',
-            icon: BookOpen,
-          },
+          { label: 'Loyihalar', href: '/activities/projects', desc: 'Bizning innovatsiyalar', icon: Briefcase },
+          { label: 'Ilm-fan', href: '/activities/science', desc: 'Tadqiqot ishlari', icon: BookOpen },
         ],
       },
       { label: 'Hamkorlar', href: '/partners' },
       {
         label: 'Resurslar',
         dropdown: [
-          {
-            label: 'Maqolalar',
-            href: '/resources/articles',
-            desc: 'Bilim ulashish markazi',
-            icon: FileText,
-          },
-          {
-            label: 'Kutubxona',
-            href: '/resources/library',
-            desc: 'Raqamli manbalar bazasi',
-            icon: BookOpen,
-          },
+          { label: 'Maqolalar', href: '/resources/articles', desc: 'Bilimlar bazasi', icon: FileText },
+          { label: 'Kutubxona', href: '/resources/library', desc: 'Raqamli kutubxona', icon: BookOpen },
         ],
       },
     ],
-    login: 'Kirish',
+    login: 'Login',
   },
   ru: {
     navItems: [
@@ -103,65 +64,25 @@ const navContent = {
       {
         label: 'О нас',
         dropdown: [
-          {
-            label: 'О компании',
-            href: '/about/company',
-            desc: 'Наша история и цели',
-            icon: Briefcase,
-          },
-          {
-            label: 'Об университете',
-            href: '/about/university',
-            desc: 'Академическая среда и возможности',
-            icon: GraduationCap,
-          },
-          {
-            label: 'Поступление',
-            href: '/about/admissions',
-            desc: 'Требования к поступлению',
-            icon: Users,
-          },
-          {
-            label: 'Документы',
-            href: '/about/documents',
-            desc: 'Лицензии и сертификаты',
-            icon: FileText,
-          },
+          { label: 'Компания', href: '/about/company', desc: 'История и цели', icon: Briefcase },
+          { label: 'Университет', href: '/about/university', desc: 'Академическая среда', icon: GraduationCap },
+          { label: 'Прием', href: '/about/admissions', desc: 'Требования', icon: Users },
+          { label: 'Документы', href: '/about/documents', desc: 'Лицензии', icon: FileText },
         ],
       },
       {
         label: 'Деятельность',
         dropdown: [
-          {
-            label: 'Проекты',
-            href: '/activities/projects',
-            desc: 'Наши инновации',
-            icon: Briefcase,
-          },
-          {
-            label: 'Научные работы',
-            href: '/activities/scientific-works',
-            desc: 'Исследования',
-            icon: BookOpen,
-          },
+          { label: 'Проекты', href: '/activities/projects', desc: 'Наши инновации', icon: Briefcase },
+          { label: 'Наука', href: '/activities/science', desc: 'Исследования', icon: BookOpen },
         ],
       },
       { label: 'Партнеры', href: '/partners' },
       {
         label: 'Ресурсы',
         dropdown: [
-          {
-            label: 'Статьи',
-            href: '/resources/articles',
-            desc: 'База знаний',
-            icon: FileText,
-          },
-          {
-            label: 'Библиотека',
-            href: '/resources/library',
-            desc: 'Цифровые ресурсы',
-            icon: BookOpen,
-          },
+          { label: 'Статьи', href: '/resources/articles', desc: 'База знаний', icon: FileText },
+          { label: 'Библиотека', href: '/resources/library', desc: 'Цифровая библиотека', icon: BookOpen },
         ],
       },
     ],
@@ -173,70 +94,30 @@ const navContent = {
       {
         label: 'About Us',
         dropdown: [
-          {
-            label: 'Company',
-            href: '/about/company',
-            desc: 'History and goals',
-            icon: Briefcase,
-          },
-          {
-            label: 'University',
-            href: '/about/university',
-            desc: 'Academic environment',
-            icon: GraduationCap,
-          },
-          {
-            label: 'Admissions',
-            href: '/about/admissions',
-            desc: 'Requirements',
-            icon: Users,
-          },
-          {
-            label: 'Documents',
-            href: '/about/documents',
-            desc: 'Licenses',
-            icon: FileText,
-          },
+          { label: 'Company', href: '/about/company', desc: 'History and goals', icon: Briefcase },
+          { label: 'University', href: '/about/university', desc: 'Academic environment', icon: GraduationCap },
+          { label: 'Admissions', href: '/about/admissions', desc: 'Requirements', icon: Users },
+          { label: 'Documents', href: '/about/documents', desc: 'Licenses', icon: FileText },
         ],
       },
       {
         label: 'Activities',
         dropdown: [
-          {
-            label: 'Projects',
-            href: '/activities/projects',
-            desc: 'Our innovations',
-            icon: Briefcase,
-          },
-          {
-            label: 'Science',
-            href: '/activities/scientific-works',
-            desc: 'Research works',
-            icon: BookOpen,
-          },
+          { label: 'Projects', href: '/activities/projects', desc: 'Our innovations', icon: Briefcase },
+          { label: 'Science', href: '/activities/science', desc: 'Research works', icon: BookOpen },
         ],
       },
       { label: 'Partners', href: '/partners' },
       {
         label: 'Resources',
         dropdown: [
-          {
-            label: 'Articles',
-            href: '/resources/articles',
-            desc: 'Knowledge base',
-            icon: FileText,
-          },
-          {
-            label: 'Library',
-            href: '/resources/library',
-            desc: 'Digital library',
-            icon: BookOpen,
-          },
+          { label: 'Articles', href: '/resources/articles', desc: 'Knowledge base', icon: FileText },
+          { label: 'Library', href: '/resources/library', desc: 'Digital library', icon: BookOpen },
         ],
       },
     ],
     login: 'Login',
-  },
+  }
 }
 
 export function Navbar() {
@@ -249,119 +130,68 @@ export function Navbar() {
 
   const currentContent = navContent[selectedLang]
 
+  // Tilni almashtirish funksiyasi
+  const changeLanguage = (code: LanguageCode) => {
+    setSelectedLang(code)
+    setLangDropdownOpen(false)
+  }
+
+  // Scrollni qulflash
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-      if (window.scrollY > 20) setActiveDropdown(null)
-    }
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+  }, [mobileMenuOpen])
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    setMobileMenuOpen(false)
-  }, [location])
-
-  const changeLanguage = (lang: LanguageCode) => {
-    setSelectedLang(lang)
-    setLangDropdownOpen(false)
-  }
+  useEffect(() => { setMobileMenuOpen(false) }, [location])
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-[1000] transition-all duration-500',
-        scrolled ? 'py-2' : 'py-4'
-      )}
-    >
+    <header className={cn(
+      'fixed top-0 left-0 right-0 z-[1000] transition-all duration-500',
+      scrolled ? 'py-2' : 'py-4'
+    )}>
       <nav className="container mx-auto px-4">
-        <motion.div
-          layout
-          className={cn(
-            'relative rounded-2xl lg:rounded-3xl px-4 lg:px-8 py-2 lg:py-3 flex items-center justify-between transition-all duration-500',
-            'bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 shadow-lg'
-          )}
-        >
-          {/* LOGO SECTION */}
-          <Link to="/" className="flex items-center gap-4 sm:gap-3 shrink-0">
-            <motion.img
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              whileTap={{ scale: 0.95 }}
-              src={logo2}
-              alt="Electron"
-              className="h-10 sm:h-12 lg:h-16 w-auto object-contain"
-            />
-            <motion.img
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              whileTap={{ scale: 0.95 }}
-              src={logo1}
-              alt="Laboratory"
-              className="h-10 sm:h-12 lg:h-16 w-auto object-contain"
-            />
+        <motion.div className="relative rounded-2xl lg:rounded-3xl px-4 lg:px-6 py-2 flex items-center justify-between bg-white/90 backdrop-blur-xl border border-slate-200 shadow-lg">
+          
+          {/* LOGO */}
+          <Link to="/" className="flex items-center gap-2 shrink-0">
+            <img src={logo2} alt="Logo" className="h-8 lg:h-11 w-auto" />
+            <div className="h-6 w-[1px] bg-slate-300 mx-1" />
+            <img src={logo1} alt="Logo" className="h-6 lg:h-9 w-auto" />
           </Link>
 
           {/* DESKTOP NAV */}
           <div className="hidden xl:flex items-center gap-1">
-            {currentContent.navItems.map(item => (
-              <div
-                key={item.label}
+            {currentContent.navItems.map((item) => (
+              <div 
+                key={item.label} 
                 className="relative"
-                onMouseEnter={() => setActiveDropdown(item.label)}
+                onMouseEnter={() => item.dropdown && setActiveDropdown(item.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <Link
-                  to={item.href || '#'}
-                  className={cn(
-                    'px-4 py-2 text-sm font-bold transition-all rounded-xl flex items-center gap-1.5 whitespace-nowrap relative',
-                    location.pathname === item.href
-                      ? 'text-primary'
-                      : 'text-slate-700 dark:text-slate-300'
-                  )}
-                >
+                <Link to={item.href || '#'} className="px-3 py-2 text-[15px] font-bold text-slate-700 hover:text-blue-600 flex items-center gap-1 transition-colors">
                   {item.label}
-                  {item.dropdown && (
-                    <ChevronDown
-                      className={cn(
-                        'w-4 h-4 transition-transform duration-300',
-                        activeDropdown === item.label && 'rotate-180'
-                      )}
-                    />
-                  )}
+                  {item.dropdown && <ChevronDown size={14} className={cn('transition-transform', activeDropdown === item.label && 'rotate-180')} />}
                 </Link>
 
                 <AnimatePresence>
                   {item.dropdown && activeDropdown === item.label && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-full left-0 w-80 pt-4"
-                    >
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-2xl grid gap-1">
-                        {item.dropdown.map((drop, idx) => (
-                          <motion.div
-                            key={drop.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.05 }}
-                          >
-                            <Link
-                              to={drop.href}
-                              className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group"
-                            >
-                              <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                                <drop.icon className="w-4 h-4" />
-                              </div>
-                              <div>
-                                <div className="text-sm font-bold">
-                                  {drop.label}
-                                </div>
-                                <div className="text-[11px] text-slate-500">
-                                  {drop.desc}
-                                </div>
-                              </div>
-                            </Link>
-                          </motion.div>
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full left-0 pt-2 w-72">
+                      <div className="bg-white border border-slate-100 rounded-2xl p-2 shadow-2xl">
+                        {item.dropdown.map((drop) => (
+                          <Link key={drop.label} to={drop.href} className="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-all">
+                            <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                              <drop.icon size={20} />
+                            </div>
+                            <div>
+                              <div className="text-sm font-bold text-slate-900 leading-none mb-1">{drop.label}</div>
+                              <div className="text-[11px] text-slate-500">{drop.desc}</div>
+                            </div>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -372,41 +202,30 @@ export function Navbar() {
           </div>
 
           {/* ACTIONS */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Language Selector */}
+          <div className="flex items-center gap-3">
+            {/* Til Tanlash */}
             <div className="relative">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button 
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm"
+                className="h-10 px-3 flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors font-bold text-sm"
               >
-                <span className="text-base sm:text-lg">
-                  {languages[selectedLang].flag}
-                </span>
-                <span className="text-xs font-bold hidden md:inline uppercase">
-                  {selectedLang}
-                </span>
-              </motion.button>
-
+                <span>{languages[selectedLang].label}</span>
+                <ChevronDown size={14} className={cn('transition-transform', langDropdownOpen && 'rotate-180')} />
+              </button>
+              
               <AnimatePresence>
                 {langDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                    className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden z-[1001]"
-                  >
-                    {Object.entries(languages).map(([code, lang]) => (
-                      <button
-                        key={code}
-                        onClick={() => changeLanguage(code as LanguageCode)}
+                  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="absolute top-full right-0 mt-2 w-36 bg-white border border-slate-100 rounded-xl p-1 shadow-xl z-50">
+                    {Object.values(languages).map((lang) => (
+                      <button 
+                        key={lang.code} 
+                        onClick={() => changeLanguage(lang.code)}
                         className={cn(
-                          'w-full px-4 py-2.5 flex items-center gap-3 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors',
-                          selectedLang === code && 'text-primary bg-primary/5'
+                          "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors",
+                          selectedLang === lang.code && "text-blue-600 bg-blue-50"
                         )}
                       >
-                        <span>{lang.flag}</span> {lang.name}
+                        {lang.name} <span>{lang.flag}</span>
                       </button>
                     ))}
                   </motion.div>
@@ -414,81 +233,71 @@ export function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* Login Button */}
-            <Link to="/login" className="hidden sm:block">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-5 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold rounded-xl flex items-center gap-2"
-              >
-                <User className="w-4 h-4" />
-                {currentContent.login}
-              </motion.button>
+            {/* Desktop Login */}
+            <Link to="/login" className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-[#0f172a] text-white rounded-xl font-bold text-sm hover:bg-blue-600 transition-all">
+              <User size={18} /> {currentContent.login}
             </Link>
 
-            {/* Mobile Toggle */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800"
+            {/* Hamburger */}
+            <button 
+              onClick={() => setMobileMenuOpen(true)}
+              className="xl:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-[#0f172a] text-white"
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </motion.button>
+              <Menu size={22} />
+            </button>
           </div>
         </motion.div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU PANEL */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="xl:hidden absolute top-full left-4 right-4 mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden"
-            >
-              <div className="p-4 space-y-4">
-                {currentContent.navItems.map(item => (
-                  <div
-                    key={item.label}
-                    className="border-b border-slate-100 dark:border-slate-800 pb-2 last:border-0"
-                  >
-                    {item.href ? (
-                      <Link
-                        to={item.href}
-                        className="flex items-center justify-between py-2 text-lg font-bold"
-                      >
-                        {item.label}
-                        <ArrowRight className="w-5 h-5 text-slate-400" />
-                      </Link>
-                    ) : (
-                      <div className="space-y-3">
-                        <div className="text-[10px] font-black uppercase text-primary">
-                          {item.label}
-                        </div>
-                        <div className="grid gap-2">
-                          {item.dropdown?.map(drop => (
-                            <Link
-                              key={drop.href}
-                              to={drop.href}
-                              className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl"
-                            >
-                              <drop.icon className="w-5 h-5 text-primary" />
-                              <div className="text-sm font-bold">
-                                {drop.label}
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+            <>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1008] xl:hidden" />
+              <motion.div 
+                initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} 
+                transition={{ type: 'spring', damping: 25, stiffness: 120 }} // Mayin animatsiya
+                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white z-[1009] flex flex-col shadow-2xl"
+              >
+                <div className="p-5 border-b flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <img src={logo2} alt="Logo" className="h-8" />
+                    <img src={logo1} alt="Logo" className="h-6" />
                   </div>
-                ))}
-              </div>
-            </motion.div>
+                  <button onClick={() => setMobileMenuOpen(false)} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100"><X size={24} /></button>
+                </div>
+                
+                <div className="flex-1 overflow-y-auto p-6 space-y-8">
+                  {currentContent.navItems.map((item) => (
+                    <div key={item.label} className="space-y-4">
+                      {item.href ? (
+                        <Link to={item.href} className="text-xl font-bold block text-slate-900">{item.label}</Link>
+                      ) : (
+                        <div className="space-y-4">
+                          <div className="text-[11px] font-black text-blue-600 uppercase tracking-widest">{item.label}</div>
+                          <div className="grid gap-3">
+                            {item.dropdown?.map((drop) => (
+                              <Link key={drop.label} to={drop.href} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl active:bg-blue-50 transition-all">
+                                <div className="p-2 bg-white rounded-lg text-blue-600 shadow-sm"><drop.icon size={20} /></div>
+                                <div>
+                                  <div className="text-sm font-bold text-slate-900">{drop.label}</div>
+                                  <div className="text-[10px] text-slate-500">{drop.desc}</div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="p-6 border-t bg-white">
+                  <Link to="/login" className="w-full py-4 bg-[#0f172a] text-white rounded-2xl font-bold flex justify-center items-center gap-2 shadow-lg active:scale-95 transition-all">
+                    <User size={20} /> {currentContent.login}
+                  </Link>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>
