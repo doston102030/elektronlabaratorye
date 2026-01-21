@@ -14,10 +14,11 @@ import {
   Users,
   Briefcase,
   FileText,
+  Globe, // Chet el uchun ikonka
+  Building2, // Mahalliy uchun ikonka
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-// 1. Tillar ro'yxati
 const languages = {
   uz: { code: 'uz', name: "O'zbek", flag: '🇺🇿', label: 'UZ' },
   ru: { code: 'ru', name: 'Русский', flag: '🇷🇺', label: 'RU' },
@@ -26,7 +27,6 @@ const languages = {
 
 type LanguageCode = keyof typeof languages
 
-// 2. Rasmdagi barcha ma'lumotlar kiritilgan kontent
 const navContent = {
   uz: {
     navItems: [
@@ -47,7 +47,13 @@ const navContent = {
           { label: 'Ilm-fan', href: '/activities/science', desc: 'Tadqiqot ishlari', icon: BookOpen },
         ],
       },
-      { label: 'Hamkorlar', href: '/partners' },
+      { 
+        label: 'Hamkorlar', 
+        dropdown: [
+          { label: 'Mahalliy hamkorlar', href: '/partners/local', desc: "O'zimizdagi hamkorlar", icon: Building2 },
+          { label: 'Xalqaro hamkorlar', href: '/partners/international', desc: 'Chet eldagi hamkorlar', icon: Globe },
+        ]
+      },
       {
         label: 'Resurslar',
         dropdown: [
@@ -65,7 +71,7 @@ const navContent = {
         label: 'О нас',
         dropdown: [
           { label: 'Компания', href: '/about/company', desc: 'История и цели', icon: Briefcase },
-          { label: 'Университет', href: '/about/university', desc: 'Академическая среда', icon: GraduationCap },
+          { label: 'Университет', href: '/about/university', desc: 'Среда', icon: GraduationCap },
           { label: 'Прием', href: '/about/admissions', desc: 'Требования', icon: Users },
           { label: 'Документы', href: '/about/documents', desc: 'Лицензии', icon: FileText },
         ],
@@ -73,16 +79,22 @@ const navContent = {
       {
         label: 'Деятельность',
         dropdown: [
-          { label: 'Проекты', href: '/activities/projects', desc: 'Наши инновации', icon: Briefcase },
+          { label: 'Проекты', href: '/activities/projects', desc: 'Инновации', icon: Briefcase },
           { label: 'Наука', href: '/activities/science', desc: 'Исследования', icon: BookOpen },
         ],
       },
-      { label: 'Партнеры', href: '/partners' },
+      { 
+        label: 'Партнеры', 
+        dropdown: [
+          { label: 'Местные партнеры', href: '/partners/local', desc: 'Партнеры в Узбекистане', icon: Building2 },
+          { label: 'Международные партнеры', href: '/partners/international', desc: 'Зарубежные партнеры', icon: Globe },
+        ]
+      },
       {
         label: 'Ресурсы',
         dropdown: [
           { label: 'Статьи', href: '/resources/articles', desc: 'База знаний', icon: FileText },
-          { label: 'Библиотека', href: '/resources/library', desc: 'Цифровая библиотека', icon: BookOpen },
+          { label: 'Библиотека', href: '/resources/library', desc: 'Библиотека', icon: BookOpen },
         ],
       },
     ],
@@ -95,7 +107,7 @@ const navContent = {
         label: 'About Us',
         dropdown: [
           { label: 'Company', href: '/about/company', desc: 'History and goals', icon: Briefcase },
-          { label: 'University', href: '/about/university', desc: 'Academic environment', icon: GraduationCap },
+          { label: 'University', href: '/about/university', desc: 'Environment', icon: GraduationCap },
           { label: 'Admissions', href: '/about/admissions', desc: 'Requirements', icon: Users },
           { label: 'Documents', href: '/about/documents', desc: 'Licenses', icon: FileText },
         ],
@@ -103,11 +115,17 @@ const navContent = {
       {
         label: 'Activities',
         dropdown: [
-          { label: 'Projects', href: '/activities/projects', desc: 'Our innovations', icon: Briefcase },
-          { label: 'Science', href: '/activities/science', desc: 'Research works', icon: BookOpen },
+          { label: 'Projects', href: '/activities/projects', desc: 'Innovations', icon: Briefcase },
+          { label: 'Science', href: '/activities/science', desc: 'Research', icon: BookOpen },
         ],
       },
-      { label: 'Partners', href: '/partners' },
+      { 
+        label: 'Partners', 
+        dropdown: [
+          { label: 'Local Partners', href: '/partners/local', desc: 'Partners in Uzbekistan', icon: Building2 },
+          { label: 'International Partners', href: '/partners/international', desc: 'Global partners', icon: Globe },
+        ]
+      },
       {
         label: 'Resources',
         dropdown: [
@@ -130,13 +148,11 @@ export function Navbar() {
 
   const currentContent = navContent[selectedLang]
 
-  // Tilni almashtirish funksiyasi
   const changeLanguage = (code: LanguageCode) => {
     setSelectedLang(code)
     setLangDropdownOpen(false)
   }
 
-  // Scrollni qulflash
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
   }, [mobileMenuOpen])
@@ -157,14 +173,12 @@ export function Navbar() {
       <nav className="container mx-auto px-4">
         <motion.div className="relative rounded-2xl lg:rounded-3xl px-4 lg:px-6 py-2 flex items-center justify-between bg-white/90 backdrop-blur-xl border border-slate-200 shadow-lg">
           
-          {/* LOGO */}
           <Link to="/" className="flex items-center gap-2 shrink-0">
             <img src={logo2} alt="Logo" className="h-8 lg:h-11 w-auto" />
             <div className="h-6 w-[1px] bg-slate-300 mx-1" />
             <img src={logo1} alt="Logo" className="h-6 lg:h-9 w-auto" />
           </Link>
 
-          {/* DESKTOP NAV */}
           <div className="hidden xl:flex items-center gap-1">
             {currentContent.navItems.map((item) => (
               <div 
@@ -201,9 +215,7 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* ACTIONS */}
           <div className="flex items-center gap-3">
-            {/* Til Tanlash */}
             <div className="relative">
               <button 
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
@@ -233,12 +245,10 @@ export function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* Desktop Login */}
             <Link to="/login" className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-[#0f172a] text-white rounded-xl font-bold text-sm hover:bg-blue-600 transition-all">
               <User size={18} /> {currentContent.login}
             </Link>
 
-            {/* Hamburger */}
             <button 
               onClick={() => setMobileMenuOpen(true)}
               className="xl:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-[#0f172a] text-white"
@@ -248,14 +258,13 @@ export function Navbar() {
           </div>
         </motion.div>
 
-        {/* MOBILE MENU PANEL */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <>
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1008] xl:hidden" />
               <motion.div 
                 initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} 
-                transition={{ type: 'spring', damping: 25, stiffness: 120 }} // Mayin animatsiya
+                transition={{ type: 'spring', damping: 25, stiffness: 120 }} 
                 className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white z-[1009] flex flex-col shadow-2xl"
               >
                 <div className="p-5 border-b flex justify-between items-center">
