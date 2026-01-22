@@ -217,3 +217,41 @@
     }
   }
 }
+
+/* dark */
+
+@keyframes quantum-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+}
+
+@keyframes electron-spin {
+  from {
+    transform: rotate(0deg) translateX(8px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(8px) rotate(-360deg);
+  }
+}
+
+.quantum-pulse {
+  animation: quantum-pulse 2s infinite;
+}
+
+.electron-spin {
+  animation: electron-spin 4s linear infinite;
+}
+
+/* 3D transform uchun */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+
